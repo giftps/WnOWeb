@@ -1,0 +1,27 @@
+{$plugins}
+
+<head>
+	<link href="{$url}/{$theme_path}/{$theme_name}/registration_style.css" rel="stylesheet" type="text/css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+		rel="stylesheet">
+</head>
+
+<main>
+	<header>
+		<div class="logos">
+			<img style="width:30%;" src="{$url}/{$theme_url}/images/WidenOut_outline.png">
+		</div>
+		<h1 id="title"><span style="font-weight: 300;">This is where</span> your group chats</h1>
+		<p id="description">Thank You For Taking Your Time To Join Us</p>
+		<p id="description">Here you will get a chance to connect with brothers and sisters from all around the world.
+			Widen out is the best way to stay connected with all your favorite groups and clubs</p>
+		<p>Are You A Jehovah's Witness? </p>
+
+		<button onclick="location.href = '{$questions_url}';" class="start-button" role="button">{$lng->register}</button>
+		<button onclick="location.href = '{$welcome_url}';" class="start-button" role="button">{$lng->login_instead}</button>
+	</header>
+</main>
+{$ad}

@@ -32,6 +32,9 @@ $action = array('admin'			=> 'admin',
 				'search'		=> 'search',
 				'group'			=> 'group',
 				'page'			=> 'page',
+				'start_reg'		=> 'start_reg',
+				'questions'		=> 'questions',
+				'register'		=> 'register',
 				'info'			=> 'info'
 				);
 

@@ -4,6 +4,9 @@ RewriteRule ^(.*) 											$1											[L]
 RewriteRule ^(([^/]*)+)?$									index.php?a=$1								[L]
 
 RewriteRule ^welcome/?$										index.php?a=welcome							[NC]
+RewriteRule ^start_reg/?$									index.php?a=start_reg						    [NC]
+RewriteRule ^questions/?$									index.php?a=questions						[NC]
+RewriteRule ^register/?$									index.php?a=register						[NC]
 
 RewriteRule ^feed/?$										index.php?a=feed							[NC]
 RewriteRule ^feed/filter/([^/]+)/?$							index.php?a=feed&filter=$1					[NC]

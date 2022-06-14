@@ -72,27 +72,17 @@
 				</div>
 			</div>
 			<div class="welcome-inputs">
-				<form action="{$welcome_url}" method="POST" autocomplete="off">
-					{$loginMsg}
-					<input type="text" name="username" placeholder="{$lng->username_or_email}" value="{$login_username}">
-					<input type="password" name="password" placeholder="{$lng->password}" value="{$login_password}">
-					<div class="remember-me"><input type="checkbox" name="remember" id="remember" value="1"{$remember_checked}><label for="remember">{$lng->remember_me}</label></div>
-					<div> <button type="submit" name="login" class="login-button">{$lng->login}</button>
-					<span class="forgot-password"><a href="{$recover_url}" rel="loadpage">{$lng->forgot_password}</a></span>
-					| <span class="forgot-password"><a href="{$register_url}" rel="loadpage">{$lng->register}</a></span>
-					</div>
-				</form>
-
-				<form hidden action="{$welcome_url}" method="POST" autocomplete="off">
+				<form action="{$regster_url}" method="POST" autocomplete="off">
 					{$registerMsg}
-					<!--<input type="text" name="first_name" placeholder="{$lng->first_name}">-->
-					<!--<input type="text" name="last_name" placeholder="{$lng->last_name}">-->
+					<input type="text" name="first_name" placeholder="{$lng->first_name}">
+					<input type="text" name="last_name" placeholder="{$lng->last_name}">
 					<input type="text" name="username" placeholder="{$lng->username}" value="{$register_username}">
 					<input type="password" name="password" placeholder="{$lng->password}" value="{$register_password}">
 					<input type="text" name="email" placeholder="{$lng->email}" value="{$register_email}">
 					{$captcha}
 					<div class="remember-me"><input type="checkbox" name="agreement" id="agreement" value="1"{$agreement_checked}><label for="agreement">{$agreement}</label></div>
 					<button type="submit" name="register"  class="register-button">{$lng->register}</button>{$fblogin}
+					<span class="forgot-password"><a href="{$welcome_url}" rel="loadpage">{$lng->login_instead}</a></span>
 				</form>
 			</div>
 		</div>

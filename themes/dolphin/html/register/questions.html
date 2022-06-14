@@ -1,0 +1,117 @@
+{$plugins}
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Widen Out Survey Form</title>
+	<link href="{$url}/{$theme_path}/{$theme_name}/registration_style.css" rel="stylesheet" type="text/css">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+		rel="stylesheet">
+</head>
+
+<main>
+
+	<div class="alert">
+		<span class="closebtn" onclick="this.parentElement.style.display=none;">&times;</span>
+		{$ErrorMsg}
+	</div>
+
+	<header>
+		<p>Please answer the following questions correctly.</p>
+	</header>
+
+
+	<form method="POST" id="survey-form">
+
+		<div class="form-group">
+			<label for="first">1. ______ is inspired of God and beneficial for teaching, for reproving, for setting
+				things straight, for disciplining in righteousness.</label>
+			<div class="radio-group">
+				<input type="radio" name="first" id="every_script" value="every_script"><label for="every_script"> A.
+					Every scripture </label>
+			</div>
+			<div class="radio-group">
+				<input type="radio" name="first" id="all_scripture" value="all_scripture"><label for="all_scripture"> B.
+					All scripture </label>
+			</div>
+			<div class="radio-group">
+				<input type="radio" name="first" id="any_scripture" value="any_scripture"><label for="any_scripture"> C.
+					Any scripture </label>
+			</div>
+			<div class="radio-group">
+				<input type="radio" name="first" id="each_scripture" value="each_scripture"><label for="each_scripture">
+					D. Each scripture </label>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="secondary">2. What happens when we die?</label>
+			<div class="radio-group">
+				<input type="radio" name="secondary" id="We_go_to_heaven" value="We_go_to_heaven"><label
+					for="We_go_to_heaven"> A. We go to heaven </label>
+			</div>
+			<div class="radio-group">
+				<input type="radio" name="secondary" id="We_are_conscious_of_nothing"
+					value="We_are_conscious_of_nothing"><label for="We_are_conscious_of_nothing"> B. We are conscious of
+					nothing </label>
+			</div>
+			<div class="radio-group">
+				<input type="radio" name="secondary" id="We_are_reincarnated_into_a_different_lifeform"
+					value="We_are_reincarnated_into_a_different_lifeform"><label
+					for="We_are_reincarnated_into_a_different_lifeform"> C. We are reincarnated into a different
+					lifeform </label>
+			</div>
+			<div class="radio-group">
+				<input type="radio" name="secondary" id="We_turn_into_angels" value="We_turn_into_angels"><label
+					for="We_turn_into_angels"> D. We turn into angels </label>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="third">3. Keep on, then, _____________the Kingdom and his righteousness, and all these other
+				things will be added to you</label>
+
+			<div class="radio-group">
+				<input type="radio" name="third" id="Searching_for" value="Searching_for"><label for="Searching_for"> A.
+					Searching for </label>
+			</div>
+			<div class="radio-group">
+				<input type="radio" name="third" id="Inviting" value="Inviting"><label for="Inviting"> B. Inviting
+				</label>
+			</div>
+			<div class="radio-group">
+				<input type="radio" name="third" id="Seeking_first" value="Seeking_first"><label for="Seeking_first"> C.
+					Seeking first </label>
+			</div>
+			<div class="radio-group">
+				<input type="radio" name="third" id="Praying_for" value="Praying_for"><label for="Praying_for"> D.
+					Praying for </label>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="fourth">4. Sophia has a little brother. What is his name?</label>
+
+			<div class="radio-group">
+				<input type="radio" name="fourth" id="Joseph" value="Joseph"><label for="Joseph"> A. Joseph </label>
+			</div>
+			<div class="radio-group">
+				<input type="radio" name="fourth" id="Mattew" value="Mattew"><label for="Mattew"> B. Mattew </label>
+			</div>
+			<div class="radio-group">
+				<input type="radio" name="fourth" id="Luke" value="Luke"><label for="Luke"> C. Luke </label>
+			</div>
+			<div class="radio-group">
+				<input type="radio" name="fourth" id="Caleb" value="Caleb"><label for="Caleb"> D. Caleb </label>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<button id="submit" name="answers" type="submit">Submit</button>
+		</div>
+	</form>
+</main>
+{$ad}

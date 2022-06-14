@@ -2,6 +2,10 @@
 function PageMain() {
 	global $TMPL, $LNG, $CONF, $db, $user, $settings, $plugins;
 	
+	if(!isset($_GET['finito_registo'])) {
+		header("Location: ".permalink($CONF['url']."/index.php?a=start_reg"));
+	}
+
 	if($settings['captcha']) {
 		$TMPL['captcha'] = '<input type="text" name="captcha" placeholder="'.$LNG['captcha'].'" style="background-image: url('.$CONF['url'].'/includes/captcha.php?dir='.$LNG['lang_dir'].')" class="welcome-captcha">';
 	}
@@ -79,7 +83,7 @@ function PageMain() {
 				sendMail($_POST['email'], sprintf($LNG['welcome_mail'], $settings['title']), sprintf($LNG['user_created'], $settings['title'], $_POST['username'], $CONF['url'], $settings['title']), $CONF['email']);
 			}
 			$_SESSION['message'] = 'welcome';
-			header("Location: ".permalink($CONF['url']."/index.php?a=feed"));
+			header("Location: ".permalink($CONF['url']."/index.php?a=settings"));
 		}
 	}
 	
@@ -144,9 +148,10 @@ function PageMain() {
 	}
 
 	$TMPL['recover_url'] = permalink($CONF['url'].'/index.php?a=recover');
-	$TMPL['register_url'] = permalink($CONF['url'].'/index.php?a=register');
 	$TMPL['welcome_url'] = permalink($CONF['url'].'/index.php?a=welcome');
-	$skin = new skin('welcome/content');
+	$TMPL['start_reg_url'] = permalink($CONF['url'].'/index.php?a=start_reg');
+	$TMPL['questions_url'] = permalink($CONF['url'].'/index.php?a=questions');
+	$skin = new skin('register/content');
 	return $skin->make();
 }
 ?>

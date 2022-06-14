@@ -4,7 +4,7 @@
 <div class="bc-friends-container desktop" id="chat-window-friends-list"><div class="bc-friends-header" onclick="minimizeChatWindow('friends-list')" data-state="maximized"><div class="bc-friends-username">{$lng->online_friends} (<span id="friends-count">0</span>)</div><div class="minimize_btn"></div><a href="{$privacy_url}" rel="loadpage" onclick="minimizeChatWindow('friends-list')"><div class="settings_btn c-s-icon"></div></a></div><div class="bc-friends-content scrollable" id="friends-list"></div><div class="c-w-input c-w-input-search"><input type="text" placeholder="{$lng->search_in_friends}" id="search-window"></div></div>
 </div>
 <div class="menu-image"><div class="menu_arrow"></div><div class="menu_img"><img src="{$avatar}" title="{$realname}"/></div></div>
-<a onclick="showNotification('', '1')"><div class="menu_btn" id="notifications_btn" title="{$lng->title_notifications}" rel="loadpage"><img src="{$url}/{$theme_url}/images/icons/notification.png" id="notifications_img"></div></a>
+<a onclick="showNotification('', '1')"><div class="menu_btn" id="notifications_btn" title="{$lng->title_notifications}" rel="loadpage"><img src="{$url}/{$theme_url}/images/icons/bell.png" id="notifications_img"></div></a>
 <a onclick="showNotification('', '2')" id="messages_url"><div class="menu_btn" id="messages_btn" title="{$lng->title_messages}"><img src="{$url}/{$theme_url}/images/icons/message.png"></div></a>
 <a onclick="showNotification('', '3')"><div class="menu_btn" id="friends_btn" title="{$lng->friends}"><img src="{$url}/{$theme_url}/images/icons/friends.png"></div></a>
 {$admin_url}
@@ -94,7 +94,7 @@
 		return '<img src="{$url}/{$theme_url}/images/icons/friends.png">';
 	}
 	function getNotificationImage() {
-		return '<img src="{$url}/{$theme_url}/images/icons/notification.png">';
+		return '<img src="{$url}/{$theme_url}/images/icons/bell.png">';
 	}
 	function getMessagesImageUrl() {
 		return '<img src="{$url}/{$theme_url}/images/icons/message.png">';

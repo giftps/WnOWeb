@@ -5,8 +5,7 @@ $name = 'English';
 // Language Author
 $author = 'GiftPS';
 
-// Language URL
-$url = 'https://theps.com';
+
 
 $LNG['lang_dir'] = 'ltr';
 
@@ -34,8 +33,10 @@ $LNG['captcha'] = 'Captcha';
 $LNG['username_or_email'] = 'Username or email';
 $LNG['welcome_title'] = 'Welcome';
 $LNG['welcome_desc'] = 'to our social network';
-$LNG['welcome_about'] = 'Connect with friends, family, and the world around you.';
-$LNG['forgot_password'] = 'Forgot your password?';
+$LNG['welcome_about'] = 'Connect with friends, family, and Jehovah\'s Witnesses around world.';
+$LNG['forgot_password'] = 'Forgot password?';
+$LNG['register'] = 'Register new account?';
+$LNG['login_instead'] = 'Login instead';
 $LNG['remember_me'] = 'Remember me';
 $LNG['all_rights_reserved'] = 'All rights reserved';
 
@@ -86,9 +87,9 @@ $LNG['email_hello'] = 'Hello <strong>%s</strong>,<br><br>';
 $LNG['email_unsub'] = '<br><br><span>This message was sent automatically, if you don\'t want to receive these type of emails from <strong>%s</strong> in the future, please <a href="%s">Unsubscribe</a>.</span>';
 $LNG['email_copy'] = '<br><br><span>Copyright &copy; '.date('Y').' <a href="%s">%s</a>. All rights reserved.';
 $LNG['ttl_comment_email'] = '%s commented on your message';
-$LNG['comment_email'] = $LNG['email_hello'].'<strong><a href="%s">%s</a></strong> has commented on your <strong><a href="%s">message.</a></strong>'.$LNG['email_unsub'];
+$LNG['comment_email'] = $LNG['email_hello'].'<strong><a href="%s">%s</a></strong> has commented on your <strong><a href="%s">post.</a></strong>'.$LNG['email_unsub'];
 $LNG['ttl_like_email'] = '%s liked your message';
-$LNG['like_email'] = $LNG['email_hello'].'<strong><a href="%s">%s</a></strong> liked your <strong><a href="%s">message.</a></strong>'.$LNG['email_unsub'];
+$LNG['like_email'] = $LNG['email_hello'].'<strong><a href="%s">%s</a></strong> liked your <strong><a href="%s">post.</a></strong>'.$LNG['email_unsub'];
 $LNG['ttl_like_c_email'] = '%s liked your comment';
 $LNG['like_c_email'] = $LNG['email_hello'].'<strong><a href="%s">%s</a></strong> liked your <strong><a href="%s">comment.</a></strong>'.$LNG['email_unsub'];
 $LNG['ttl_new_friend_email'] = '%s has sent you a friend request';
@@ -105,7 +106,7 @@ $LNG['ttl_confirm_email'] = 'Activate your account';
 $LNG['confirm_email'] = $LNG['email_hello'].'Thank you for joining <strong>%s</strong>. Finish your registration by <a href="%s" target="_blank">clicking here</a>.'.$LNG['email_copy'];
 $LNG['ttl_mention_email'] = '%s mentioned you in a message';
 $LNG['ttl_mention_c_email'] = '%s mentioned you in a comment';
-$LNG['mention_email'] = $LNG['email_hello'].'<strong><a href="%s">%s</a></strong> has mentioned you in a <strong><a href="%s">message.</a></strong>'.$LNG['email_unsub'];
+$LNG['mention_email'] = $LNG['email_hello'].'<strong><a href="%s">%s</a></strong> has mentioned you in a <strong><a href="%s">post.</a></strong>'.$LNG['email_unsub'];
 $LNG['mention_c_email'] = $LNG['email_hello'].'<strong><a href="%s">%s</a></strong> has mentioned you in a <strong><a href="%s">comment.</a></strong>'.$LNG['email_unsub'];
 
 // PHP MODULES
@@ -189,7 +190,7 @@ $LNG['rep_comment'] = 'Comment';
 
 // SIDEBAR
 $LNG['groups'] = 'Groups';
-$LNG['events'] = 'Events';
+$LNG['events'] = 'Likes & Interests';
 $LNG['archive'] = 'Archives';
 $LNG['recent'] = 'Recent';
 $LNG['all_events'] = 'All events';
@@ -250,7 +251,7 @@ $LNG['label_map'] = 'Add a place';
 $LNG['label_video'] = 'Add a watched movie';
 $LNG['label_music'] = 'Add a listened song';
 $LNG['label_image'] = 'Upload images';
-$LNG['message_form'] = 'What\'s on your mind?';
+$LNG['message_form'] = 'widen out...';
 $LNG['file_too_big'] = 'The selected file size (%s) is too big, the maxium file size allowed is <strong>%s</strong>.';
 $LNG['format_not_exist'] = 'The selected file (%s) format is invalid, please upload only <strong>%s</strong> image format.';
 $LNG['privacy_no_exist'] = 'The selected privacy does not exist, please refresh the page and try again.';
@@ -819,7 +820,7 @@ $LNG['group_sub_privacy'] = 'The group privacy';
 $LNG['group_sub_description'] = 'The group description';
 $LNG['group_sub_posts'] = 'Who can post in the group';
 $LNG['admins_posts'] = ', only admins can post';
-$LNG['members_posts'] = ', any member can post';
+$LNG['members_posts'] = ', Members only';
 $LNG['group_sub_cover'] = 'The group cover image';
 $LNG['public_group'] = 'Public Group';
 $LNG['private_group'] = 'Private Group';
@@ -898,14 +899,14 @@ $LNG['re_activate_sent'] = 'An activation email has been sent';
 
 // GENERAL
 $LNG['title_profile'] = 'Profile';
-$LNG['title_feed'] = 'News Feed';
+$LNG['title_feed'] = 'Home';
 $LNG['title_post'] = 'Post';
 $LNG['title_messages'] = 'Messages';
 $LNG['title_settings'] = 'Settings';
 $LNG['title_search'] = 'Search';
 $LNG['title_notifications'] = 'Notifications';
 $LNG['title_page'] = 'Create Page';
-$LNG['title_group'] = 'Create Group';
+$LNG['title_group'] = 'Groups';
 $LNG['title_admin']	= 'Admin';
 $LNG['edit'] = 'Edit';
 $LNG['delete'] = 'Delete';
@@ -919,9 +920,9 @@ $LNG['yes'] = 'Yes';
 $LNG['no'] = 'No';
 $LNG['none'] = 'None';
 $LNG['pages'] = 'Pages';
-$LNG['search_for_people'] = 'search people, #hashtags';
-$LNG['search_pages'] = ', @pages';
-$LNG['search_groups'] = ', !groups';
+$LNG['search_for_people'] = 'search people';
+$LNG['search_pages'] = ', pages';
+$LNG['search_groups'] = ', groups';
 $LNG['new_message'] = 'New message';
 $LNG['privacy_policy'] = 'Privacy Policy';
 $LNG['terms_of_use'] = 'Terms of Use';

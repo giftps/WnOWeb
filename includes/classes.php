@@ -35,7 +35,7 @@ function menu($user) {
 		$links = array(	array('profile&u='.$user['username'], realName($user['username'], $user['first_name'], $user['last_name']), 1, 0),
 						array('feed', $LNG['title_feed'], 1, 0),
 						array('notifications', $LNG['title_notifications'], 1, 0),
-						array('page', $LNG['pages'], 1, 0),
+						//@giftps array('page', $LNG['pages'], 1, 0),
 						array('group', $LNG['groups'], 1, 0),
 						array('settings', $LNG['title_settings'], 1, 0),
 						array('feed&logout', $LNG['log_out'], 0, 0));
@@ -471,7 +471,7 @@ class register {
 			$suspended = '0';
 		}
 
-		$query = sprintf("INSERT INTO `users` (`username`, `password`, `first_name`, `last_name`, `email`, `date`, `image`, `privacy`, `cover`, `verified`, `online`, `salted`, `suspended`, `ip`, `notificationl`, `notificationc`, `notifications`, `notificationd`, `notificationf`, `notificationg`, `notificationx`, `notificationp`, `notificationm`, `email_comment`, `email_like`, `email_new_friend`, `email_page_invite`, `email_group_invite`, `email_mention`, `sound_new_notification`, `sound_new_chat`, `private`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', 'default.png', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');", $this->db->real_escape_string(mb_strtolower($this->username)), $this->password, $this->db->real_escape_string($this->first_name), $this->db->real_escape_string($this->last_name), $this->db->real_escape_string($this->email), date("Y-m-d H:i:s"), (isset($this->profile_image) ? $this->profile_image : 'default.png'), 1, $this->verified, time(), $salt, $suspended, $this->db->real_escape_string(getUserIp()), 1, 1, 1, 1, 1, 1, 1, 1, 1, $this->email_comment, $this->email_like, $this->email_new_friend, $this->email_page_invite, $this->email_group_invite, $this->email_mention, 1, 1, 2);
+		$query = sprintf("INSERT INTO `users` (`username`, `password`, `first_name`, `last_name`, `email`, `date`, `image`, `privacy`, `cover`, `verified`, `online`, `salted`, `suspended`, `ip`, `notificationl`, `notificationc`, `notifications`, `notificationd`, `notificationf`, `notificationg`, `notificationx`, `notificationp`, `notificationm`, `email_comment`, `email_like`, `email_new_friend`, `email_page_invite`, `email_group_invite`, `email_mention`, `sound_new_notification`, `sound_new_chat`, `private`) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', 'default.png', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');", $this->db->real_escape_string(mb_strtolower($this->username)), $this->password, $this->db->real_escape_string($this->first_name), $this->db->real_escape_string($this->last_name), $this->db->real_escape_string($this->email), date("Y-m-d H:i:s"), (isset($this->profile_image) ? $this->profile_image : 'default.png'), 1, $this->verified, time(), $salt, $suspended, $this->db->real_escape_string(getUserIp()), 1, 1, 1, 1, 1, 1, 1, 1, 1, $this->email_comment, $this->email_like, $this->email_new_friend, $this->email_page_invite, $this->email_group_invite, $this->email_mention, 1, 1, 0);
 		$this->db->query($query);
 
 		// If the account needs to be activated
@@ -2057,8 +2057,8 @@ class feed {
 						</div>
 						<div class="comments-buttons">
 							<div id="comments-controls'.$row['id'].'" class="comments-controls" style="display: none;">
-								<div class="comment-btn button-active">
-									<a id="post-comment" onclick="postComment('.$row['id'].')">'.$LNG['post'].'</a>
+								<div class="comment-btn button-active1" style="cursor: pointer;">
+									<a id="post-comment" onclick="postComment('.$row['id'].')"><img height="25" width="25" src="./themes/dolphin/images/icons/send.png"></a>
 								</div>
 								<div id="queued-comment-files'.$row['id'].'"></div>
 							</div>
@@ -2429,7 +2429,7 @@ class feed {
 
 		// Type 0: Return buttons
 
-		// If the user is not logged-in, or has been group blocked
+		// If the user is not logged-in, or has been blocked from group 
 		if(!$this->id) {
 			return false;
 		} elseif(isset($this->group_member_data['status']) && $this->group_member_data['status'] == '2') {
@@ -2457,8 +2457,9 @@ class feed {
 				}
 
 				// If the group is private, request to join
+				// On second thought, upon a chat with client, just join anyways
 				if($this->group_data['privacy'] == 1) {
-					$this->db->query(sprintf("INSERT INTO `groups_users` (`group`, `user`, `status`, `permissions`) VALUES ('%s', '%s', '%s', '%s')", $this->group_data['id'], $old_id, 0, 0));
+					$this->db->query(sprintf("INSERT INTO `groups_users` (`group`, `user`, `status`, `permissions`) VALUES ('%s', '%s', '%s', '%s')", $this->group_data['id'], $old_id, 1, 0));
 				} else {
 					// Add in group
 					$this->db->query(sprintf("INSERT INTO `groups_users` (`group`, `user`, `status`, `permissions`) VALUES ('%s', '%s', '%s', '%s')", $this->group_data['id'], $old_id, 1, 0));
@@ -4789,7 +4790,7 @@ class feed {
 			if(empty($bold) && isset($_GET['r']) == false) {
 				$class = ' sidebar-link-active';
 			}
-			$link .= '<div class="sidebar-link'.$class.'"><a href="'.permalink($this->url.'/index.php?a='.$_GET['a'].$profile).'" rel="loadpage"><img src="'.$this->url.'/'.$CONF['theme_url'].'/images/icons/events/all.svg">'.$LNG["all_events"].'</a></div>';
+			// $link .= '<div class="sidebar-link'.$class.'"><a href="'.permalink($this->url.'/index.php?a='.$_GET['a'].$profile).'" rel="loadpage"><img src="'.$this->url.'/'.$CONF['theme_url'].'/images/icons/events/all.svg">'.$LNG["all_events"].'</a></div>';
 
 			$i = 1;
 			$hidden = '';
@@ -5435,17 +5436,20 @@ class feed {
 		global $CONF, $LNG;
 
 		// Select the groups and group by the ones owned, group by name
-		$query = $this->db->query(sprintf("SELECT * FROM `groups_users`, `groups` WHERE `groups_users`.`user` = '%s' AND `groups_users`.`status` = 1 AND `groups_users`.`group` = `groups`.`id` ORDER BY `permissions` DESC, `groups`.`title` ASC LIMIT %s", $this->db->real_escape_string($this->id), $this->groups_limit));
+		// $query = $this->db->query(sprintf("SELECT * FROM `groups_users`, `groups` WHERE `groups_users`.`user` = '%s' AND `groups_users`.`status` = 1 AND `groups_users`.`group` = `groups`.`id` ORDER BY `permissions` DESC, `groups`.`title` ASC LIMIT %s", $this->db->real_escape_string($this->id), $this->groups_limit));
+		$query = $this->db->query(sprintf("SELECT * FROM `groups` "));
 		$row = array();
 
 		while($rows = $query->fetch_assoc()) {
 			$row[] = $rows;
 		}
 
-		$output = '<div class="sidebar-container widget-groups"><div class="sidebar-content"><div class="sidebar-header"><a href="'.permalink($this->url.'/index.php?a=group').'" rel="loadpage">'.$LNG['groups'].'</a></span></div>';
+		$output = '<div class="sidebar-container widget-groups"><div class="sidebar-content">
+			<div class="sidebar-header"><a href="#'.permalink($this->url.'/index.php?a=group').'" rel="loadpage">'.$LNG['groups'].'</a></span></div>';
 
 		if(!$visible) {
-			$output .= '<div class="sidebar-link"><a href="'.permalink($this->url.'/index.php?a=group').'" rel="loadpage"><img src="'.$this->url.'/'.$CONF['theme_url'].'/images/icons/plus.svg" width="24" height="24">'.$LNG['create_group'].'</a></div>';
+			// Create Group butn and link... commented out for now
+			// $output .= '<div class="sidebar-link"><a href="'.permalink($this->url.'/index.php?a=group').'" rel="loadpage"><img src="'.$this->url.'/'.$CONF['theme_url'].'/images/icons/plus.svg" width="24" height="24">'.$LNG['create_group'].'</a></div>';
 		}
 
 		if($row) {
@@ -5472,7 +5476,17 @@ class feed {
 
 				$notifications = $this->groupActivity(2, 0, $group['id']);
 
-				$output .= '<div class="sidebar-link sidebar-group'.$class.'" id="group-'.$group['id'].'"'.$hidden.'><a href="'.permalink($this->url.'/index.php?a=group&name='.$group['name']).'" rel="loadpage"><img src="'.permalink($this->url.'/image.php?t=c&w=48&h=48&src='.$group['cover']).'" width="24" height="24">'.($notifications ? '<span class="admin-notifications-number sidebar-notifications-number">'.$notifications.'</span>' : '').''.$group['title'].'</a><div class="sidebar-settings-container" onclick="messageMenu('.$group['id'].', 2)"><div class="settings_btn sidebar-settings'.($visible ? '' : ' s-settings-hidden').'"></div></div></div>';
+				$output .= '<div style="height:70px" class="sidebar-link sidebar-group'.$class.'" id="group-'.$group['id'].'"'.$hidden.'>
+								<a  style="height:70px" href="'.permalink($this->url.'/index.php?a=group&name='.$group['name']).'" rel="loadpage">
+									<img style="height:60px; width:100px" src="'.permalink($this->url.'/image.php?t=c&w=300&h=100&src='.$group['cover']).'" width="300" height="100">
+									'.($notifications ? '<span class="admin-notifications-number sidebar-notifications-number">'.$notifications.'</span>' : '').'
+									'.$group['title'].' - '.$group['description'].'
+								</a>
+
+								</div>';
+								// <div class="sidebar-settings-container" onclick="messageMenu('.$group['id'].', 2)">
+								// 	<div class="settings_btn sidebar-settings'.($visible ? '' : ' s-settings-hidden').'"></div>
+								// </div>
 
 				// Add the context menu
 				$output .= $menu;
@@ -6738,18 +6752,20 @@ class feed {
 		$verify = $this->verifyLike($id);
 
 		if($verify) {
-			$state = $LNG['dislike'];
+			// $state = $LNG['dislike'];
+			$state = '<img height="20" width="20" src="'.$this->url.'/themes/dolphin/images/liked.png" alt="Img">';
 			$y = 2;
 		} else {
-			$state = $LNG['like'];
+			// $state = $LNG['like'];
+			$state = '<img height="20" width="20" src="'.$this->url.'/themes/dolphin/images/like.png" alt="Img">';
 			$y = 1;
 		}
 
 		// If the current user is not empty
 		if(empty($this->id)) {
-			$actions = '<a href="'.$this->url.'/" rel="loadpage" title="'.$LNG['login_to_lcs'].'">'.$LNG['like'].'</a> - <a href="'.$this->url.'/" rel="loadpage" title="'.$LNG['login_to_lcs'].'">'.$LNG['comment'].'</a> - <a href="'.$this->url.'/" rel="loadpage" title="'.$LNG['login_to_lcs'].'">'.$LNG['share'].'</a>';
+			$actions = '<a href="'.$this->url.'/" rel="loadpage" title="'.$LNG['login_to_lcs'].'">'.$LNG['like'].'</a> - <a href="'.$this->url.'/" rel="loadpage" title="'.$LNG['login_to_lcs'].'">'.$LNG['comment'].'</a> ';
 		} else {
-			$actions = '<a onclick="doLike('.$id.', 0)" id="doLike'.$id.'">'.$state.'</a> - <a onclick="focus_form('.$id.')">'.$LNG['comment'].'</a> - <a onclick="share('.$id.')">'.$LNG['share'].'</a>';
+			$actions = '<a onclick="doLike('.$id.', 0)" id="doLike'.$id.'">'.$state.'</a> - <a onclick="focus_form('.$id.')"><img height="20" width="20" src="'.$this->url.'/themes/dolphin/images/chat.png" alt="Img"></a> ';
 		}
 
 		if($shares > 0) {
@@ -8474,6 +8490,7 @@ function permalink($url) {
 		$path['info']				= 'index.php?a=info';
 		$path['welcome']			= 'index.php?a=welcome';
 		$path['recover']			= 'index.php?a=recover';
+		$path['register']			= 'index.php?a=register';
 		$path['image']				= 'image.php';
 
 		if(strpos($url, $path['profile'])) {
@@ -8500,6 +8517,8 @@ function permalink($url) {
 			$url = str_replace(array($path['welcome']), array('welcome'), $url);
 		} elseif(strpos($url, $path['recover'])) {
 			$url = str_replace(array($path['recover'], '&r=1'), array('recover', '/do/'), $url);
+		} elseif(strpos($url, $path['register'])) {
+			$url = str_replace(array($path['register']), array('register'), $url);
 		} elseif(strpos($url, $path['image'])) {
 			$url = str_replace(array($path['image'], '?t=', '&w=', '&h=', '&src='), array('image', '/', '/', '/', '/'), $url);
 		}

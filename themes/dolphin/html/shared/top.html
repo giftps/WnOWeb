@@ -22,16 +22,16 @@
 			<div class="message-form-input"><input type="text" name="value" id="form-value"></div>
 			<div id="values">
 				<label id="open_images" title="{$lng->label_image}"><img src="{$url}/{$theme_url}/images/icons/events/camera.svg"></label>
-				<input type="radio" name="type" value="video" id="video" class="input_hidden"><label for="video" title="{$lng->label_video}"><img src="{$url}/{$theme_url}/images/icons/events/video.svg"></label>
-				<input type="radio" name="type" value="map" id="map" class="input_hidden"><label for="map" title="{$lng->label_map}"><img src="{$url}/{$theme_url}/images/icons/events/map.svg"></label>
-				<input type="radio" name="type" value="music" id="music" class="input_hidden"><label for="music" title="{$lng->label_music}"><img src="{$url}/{$theme_url}/images/icons/events/music.svg"></label>
-				<input type="radio" name="type" value="game" id="game" class="input_hidden"><label for="game" title="{$lng->label_game}"><img src="{$url}/{$theme_url}/images/icons/events/game.svg"></label>
-				<input type="radio" name="type" value="food" id="food" class="input_hidden"><label for="food" title="{$lng->label_food}"><img src="{$url}/{$theme_url}/images/icons/events/food.svg"></label>
+				<!-- <input type="radio" name="type" value="video" id="video" class="input_hidden"><label for="video" title="{$lng->label_video}"><img src="{$url}/{$theme_url}/images/icons/events/video.svg"></label> -->
+				<!-- <input type="radio" name="type" value="map" id="map" class="input_hidden"><label for="map" title="{$lng->label_map}"><img src="{$url}/{$theme_url}/images/icons/events/map.svg"></label> -->
+				<!-- <input type="radio" name="type" value="music" id="music" class="input_hidden"><label for="music" title="{$lng->label_music}"><img src="{$url}/{$theme_url}/images/icons/events/music.svg"></label> -->
+				<!-- <input type="radio" name="type" value="game" id="game" class="input_hidden"><label for="game" title="{$lng->label_game}"><img src="{$url}/{$theme_url}/images/icons/events/game.svg"></label> -->
+				<!-- <input type="radio" name="type" value="food" id="food" class="input_hidden"><label for="food" title="{$lng->label_food}"><img src="{$url}/{$theme_url}/images/icons/events/food.svg"></label> -->
 				{$plugins}
 				<input name="images[]" id="images" size="27" type="file" class="inputImage" title="{$lng->label_image}" multiple="multiple" accept="image/*">
 			</div>
 			
-			<div type="button" name="action" class="message-btn button-active" value="Post"><a onclick="startUpload()">{$lng->post}</a></div>
+			<div type="button" name="action" class="message-btn button-active1" style="cursor: pointer;"><a onclick="startUpload()"> <img src="{$url}/{$theme_url}/images/icons/send.png"> </a></div>
 			<div class="message-btn button-normal" onclick="messageMenu(9999999999, 1)" title="{$lng->change_privacy}" id="privacy-button"{$style}><a><div id="privacy-btn" class="privacy-icons {$privacy_class}-icon"></div></a></div>
 			<div id="message-menu9999999999" class="message-menu-container message-menu-privacy">
 				<div class="message-menu-row" onclick="postPrivacy(1)">{$lng->public}</div>

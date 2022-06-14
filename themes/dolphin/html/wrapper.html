@@ -13,14 +13,16 @@
 </head>
 <body>
 <div id="loading-bar"><dd></dd><dt></dt></div>
+<!-- topbar -->
 <div class="topbar">
-	<div class="header">
+	<div class="header" style="padding-top: 7px;">
 		<a href="{$url_logo}" rel="loadpage"><div class="menu_btn logo-container"><div class="logo"></div></div></a>
 		<div class="search-input"><input type="text" id="search" placeholder="{$lng->search_for_people}" autocomplete="off" value="{$current_search}"></div>
 		{$menu}
 	</div>
 	<div class="search-container"></div>
 </div>
+
 <div id="content">
 	{$content}
 </div>
