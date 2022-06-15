@@ -536,15 +536,19 @@ line-height: 47px;
 margin-right: 20px;
 font-weight: bold;
 text-decoration: none;
-color: #7f7f7f;
+color:#EC652B;
 float: left;
+
+background: -webkit-linear-gradient(#FFA952 20%,#B02F12 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 }
 a.cover-button:hover {
 color: #3C5C9E;
 }
 a.cover-button-active {
 color: #3C5C9E;
-border-bottom: 2px solid #3C5C9E;
+border-bottom: 2px solid #b02f129d;
 line-height: 47px;
 height: 45px;
 }
@@ -724,7 +728,10 @@ width: 42px;
 word-break: break-all;
 }
 .message-author a {
-color: #3A5796;
+color: #EC652B;
+background: -webkit-linear-gradient(#FFA952 20%,#B02F12 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
 cursor: pointer;
 font-weight: bold;
 }
@@ -862,8 +869,10 @@ display: block;
 border-bottom: none;
 }
 .message-reply-author a {
-color: #3A5796;
-cursor: pointer;
+color: #EC652B;
+background: -webkit-linear-gradient(#FFA952 20%,#B02F12 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;cursor: pointer;
 font-weight: bold;
 }
 .message-reply-message {

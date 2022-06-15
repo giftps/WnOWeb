@@ -72,7 +72,7 @@ function menu($user) {
 		return $menu;
 	} else {
 		// Else show the LogIn Register button
-		return '<a href="'.permalink($CONF['url'].'/index.php?a=welcome').'" rel="loadpage" title="'.$LNG['connect'].'"><div class="topbar-button">'.$LNG['connect'].'</div></a>'.$admin_url;
+		// return '<a href="'.permalink($CONF['url'].'/index.php?a=welcome').'" rel="loadpage" title="'.$LNG['connect'].'"><div class="topbar-button">'.$LNG['connect'].'</div></a>'.$admin_url;
 	}
 }
 function info_urls() {
