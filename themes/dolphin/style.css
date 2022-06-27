@@ -266,6 +266,7 @@ z-index: 1000;
 height: 70px;
 background: #2488FF;
 background: linear-gradient(to bottom, #ffffff 80%,#bfc0c4 100%);
+/* @giftps */
 /* background: linear-gradient(to bottom, #54C9EB 0%,#2488FF 100%); */
 /* border-bottom: 1px solid #1e346a; */
 }
@@ -2928,7 +2929,7 @@ pointer-events: none;
 border: 1px solid #BFBFBF;
 border-bottom: 1px solid #EEE;
 height: 14px;
-background: #f8f8f8;
+background: #f8f8f831;
 padding: 10px;
 font-size: 13px;
 font-weight: bold;
@@ -3308,7 +3309,7 @@ flex: 7;
 position: relative;
 }
 .grid-sidebar {
-flex: 3;
+flex: 2;
 position: relative;
 }
 .float-left {

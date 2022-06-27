@@ -4,23 +4,23 @@ error_reporting(0);
 $CONF = $TMPL = array();
 
 // The MySQL credentials
-// $CONF['host'] = 'localhost';
-// $CONF['user'] = 'root';
-// $CONF['pass'] = '';
-// $CONF['name'] = 'widenout';
+$CONF['host'] = 'localhost';
+$CONF['user'] = 'root';
+$CONF['pass'] = '';
+$CONF['name'] = 'wno';
 
 // The Installation URL
-// $CONF['url'] = 'http://localhost/widenout/web'; // Dev
+$CONF['url'] = 'http://localhost/widenout/web'; // Dev
 
 
 // Remote The MySQL credentials
-$CONF['host'] = 'sql6.freemysqlhosting.net';
-$CONF['user'] = 'sql6499833';
-$CONF['pass'] = 'dq63BdB3Lh';
-$CONF['name'] = 'sql6499833';
+// $CONF['host'] = 'sql6.freemysqlhosting.net';
+// $CONF['user'] = 'sql6499833';
+// $CONF['pass'] = 'dq63BdB3Lh';
+// $CONF['name'] = 'sql6499833';
 
-// The Installation URL
-$CONF['url'] = 'https://widenout.herokuapp.com'; // Prod - Heroku
+// // The Installation URL
+// $CONF['url'] = 'https://widenout.herokuapp.com'; // Prod - Heroku
 
 // The Notifications e-mail
 $CONF['email'] = 'email@widenout.com';
