@@ -4172,7 +4172,7 @@ class feed {
 				$images = explode(',', $value);
 				$result = '';
 				if(count($images) == 1) {
-					$result .= '<div class="message-type-image event-picture"><a onclick="gallery(\''.$images[0].'\', '.$id.', \'media\', 1)" id="'.$images[0].'"><img src="'.permalink($this->url.'/image.php?t=m&w=650&h=300&src='.$images[0]).'"></a>';
+					$result .= '<div class="message-type-image event-picture"><a onclick="gallery(\''.$images[0].'\', '.$id.', \'media\', 1)" id="'.$images[0].'"><img src="'.permalink($this->url.'/image.php?t=m&w=650&h=500&src='.$images[0]).'"></a>';
 				} elseif(count($images) == 2) {
 					$result .= '<div class="message-type-image event-picture"><div class="image-container-padding">';
 					foreach($images as $image) {
@@ -5480,7 +5480,7 @@ class feed {
 								<a  style="height:70px" href="'.permalink($this->url.'/index.php?a=group&name='.$group['name']).'" rel="loadpage">
 									<img style="height:60px; width:100px" src="'.permalink($this->url.'/image.php?t=c&w=300&h=100&src='.$group['cover']).'" width="300" height="100">
 									'.($notifications ? '<span class="admin-notifications-number sidebar-notifications-number">'.$notifications.'</span>' : '').'
-									'.$group['title'].' - '.$group['description'].'
+									'.$group['title'].'
 								</a>
 
 								</div>';

@@ -301,7 +301,7 @@ $LNG['sub_website'] = 'Your website, blog or personal page';
 $LNG['ttl_gender'] = 'Gender';
 $LNG['sub_gender'] = 'Select your gender';
 
-$LNG['interests'] = 'Interests';
+$LNG['interests'] = 'Interested in';
 $LNG['sub_interested_in'] = 'Persons you\'re interested in';
 
 $LNG['ttl_country'] = 'Country';
