@@ -2376,7 +2376,7 @@ class feed {
 
 		// Run the query
 		$result = $this->db->query($query);
-
+ 
 		return $result->fetch_assoc();
 	}
 

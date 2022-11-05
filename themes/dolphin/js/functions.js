@@ -1006,7 +1006,7 @@ function showNotification(x, y) {
 			}
 		});
 	}
-}
+} 
 function checkNewMessages() {
 	var last = jQuery('.last-message').data("last");
 	var filter = jQuery('.last-message').data("filter");
