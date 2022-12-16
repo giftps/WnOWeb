@@ -43,7 +43,7 @@ function menu($user) {
         $TMPL['links'] = $TMPL['plugins'] = $divider = '';
 		foreach($links as $element => $value) {
 			if($value) {
-				$TMPL['links'] .= $divider.'<a href="'.permalink($CONF['url'].'/index.php?a='.$value[0]).'" '.($value[2] ? ' rel="loadpage"' : '').'><div class="menu-dd-row'.(($value[3] == 1) ? ' menu-dd-extra' : '').(($value[3] == 2) ? ' menu-dd-mobile' : '').'">'.$value[1].'</div></a>';
+				$TMPL['links'] .= $divider.'<a class="dropdown-item" href="'.permalink($CONF['url'].'/index.php?a='.$value[0]).'" '.($value[2] ? ' rel="loadpage"' : '').'> <div class="menu-dd-row'.(($value[3] == 1) ? ' menu-dd-extra' : '').(($value[3] == 2) ? ' menu-dd-mobile' : '').'">'.$value[1].'</div></a>';
 				$divider = '<div class="menu-divider '.(($value[3] == 2) ? ' menu-dd-mobile' : '').'"></div>';
 			}
 		}
@@ -2012,42 +2012,59 @@ class feed {
 			$page = isset($this->page_data['id']) && $this->page_data['id'] ? 1 : 0;
 			$row['idu'] = isset($this->page_data['id']) && $this->page_data['id'] ? $this->page_data['id'] : $row['idu'];
 			$messages .= '
-			<div class="message-container last-message" id="message'.$row['id'].'" data-filter="'.str_replace('\'', '', $typeVal) .'" data-last="'.$row['id'].'" data-username="'.$this->profile.'" data-type="'.$dataType.'" data-userid="'.$row['uid'].'">
-				<div class="message-content">
-					<div class="message-inner">
-						<div class="message-avatar" id="avatar-p-'.$row['id'].'">
-							<a href="'.$profile_url.'" rel="loadpage">
-								<img onmouseover="profileCard('.$row['idu'].', '.$row['id'].', 0, 0, '.$page.');" onmouseout="profileCard(0, 0, 0, 1, '.$page.');" onclick="profileCard(0, 0, 1, 1, '.$page.');" src="'.$profile_img.'">
-							</a>
-						</div>
-						<div class="message-top">
-							'.$menu.'
-							<div class="message-author" id="author-p-'.$row['id'].'">
-								<a href="'.$profile_url.'" rel="loadpage">'.$profile_name.$verified.'</a>'.$shared_title.$group_title.'
+			<div class="box shadow-sm border rounded bg-white mb-3 osahan-post" id="message'.$row['id'].'" data-filter="'.str_replace('\'', '', $typeVal) .'" data-last="'.$row['id'].'" data-username="'.$this->profile.'" data-type="'.$dataType.'" data-userid="'.$row['uid'].'">
+			<div
+			  class="p-3 d-flex align-items-center border-bottom osahan-post-header"
+			>
+			  <div class="dropdown-list-image mr-3" id="avatar-p-'.$row['id'].'">
+			    <a href="'.$profile_url.'" rel="loadpage">
+					<img
+						class="rounded-circle"
+						onmouseover="profileCard('.$row['idu'].', '.$row['id'].', 0, 0, '.$page.');" 
+						onmouseout="profileCard(0, 0, 0, 1, '.$page.');" 
+						onclick="profileCard(0, 0, 1, 1, '.$page.');" 
+						src="'.$profile_img.'"
+						alt=""
+					/>
+					<div class="status-indicator bg-success"></div>
+				</a>
+				
+			  </div>
+			  <div class="font-weight-bold">
+				<div class="text-truncate" >
+					<a href="'.$profile_url.'" rel="loadpage" style="color:#000;">'.$profile_name.$verified.'</a>'.$shared_title.$group_title.'
+				</div>
+				<div class="small text-gray-500">
+					<div class="message-time">
+						<span id="time-p-'.$row['id'].'"><a href="'.permalink($this->url.'/index.php?a=post&m='.$row['id']).'" rel="loadpage">
+							<div class="timeago'.$b.'" title="'.$time.'">
+								'.$time.'
 							</div>
-							<div class="message-time">
-								<span id="time-p-'.$row['id'].'"><a href="'.permalink($this->url.'/index.php?a=post&m='.$row['id']).'" rel="loadpage">
-									<div class="timeago'.$b.'" title="'.$time.'">
-										'.$time.'
-									</div>
-								</a></span><span id="privacy'.$row['id'].'">'.$public.'</span>
-								<div id="message_loader'.$row['id'].'"></div>
-							</div>
-						</div>
-						<div class="message-message" id="message_text'.$row['id'].'">			
-							'.nl2br($this->parseMessage($row['message'])).'
-						</div>
-						'.($sharedContent ? '<div class="message-message"><div class="message-shared">'.nl2br($this->parseMessage($sharedContent)).'</div></div>' : '').'
+						</a></span><span id="privacy'.$row['id'].'">'.$public.'</span>
+						<div id="message_loader'.$row['id'].'"></div>
 					</div>
-					<div class="message-divider"></div>
-					'.($sharedMedia ? $sharedMedia : $this->getMessageType($row['type'], $row['value'], $row['id'])).$po.'
-					<div class="message-replies">
-						<div class="message-actions"><div class="message-actions-content" id="message-action'.$row['id'].'">'.$this->getActions($row['id'], $row['likes'], $row['comments'], $row['shares']).'</div></div>
-						<div class="message-replies-content" id="comments-list'.$row['id'].'">
+				</div>
+			  </div>
+				<span class="ml-auto small">
+				'.$menu.'
+				</span>
+			  </div>
+			  <div class="p-3 border-bottom osahan-post-body">
+				<div class="message-message" id="message_text'.$row['id'].'">			
+					'.nl2br($this->parseMessage($row['message'])).'
+				</div> 
+				'.($sharedContent ? '<div class="message-message"><div class="message-shared">'.nl2br($this->parseMessage($sharedContent)).'</div></div>' : '').' 
+			  </div>
+			  '.($sharedMedia ? $sharedMedia : $this->getMessageType($row['type'], $row['value'], $row['id'])).$po.'
+					
+			<div class="p-3 border-bottom osahan-post-footer">
+			<div class="message-actions"><div class="message-actions-content" id="message-action'.$row['id'].'">'.$this->getActions($row['id'], $row['likes'], $row['comments'], $row['shares']).'</div></div>
+						<div class="message-replies-content" i d="comments-list'.$row['id'].'">
 							'.$this->getComments($row['id'], null, $this->c_start, ($this->id == $row['uid'] ? 1 : 0)).'
 						</div>
-					</div>
-					<div class="message-comment-box-container" id="comment_box_'.$row['id'].'"'.$style.'>
+			  
+			</div>
+			<div class="message-comment-box-container" id="comment_box_'.$row['id'].'"'.$style.'>
 						<div class="message-reply-avatar">
 							'.((!empty($this->user)) ? '<img src="'.permalink($this->url.'/image.php?t=a&w=50&h=50&src='.(isset($this->page_data['by']) && $this->id == $this->page_data['by'] ? $this->page_data['image'] : $this->user['image']).'">') : '').'
 						</div>
@@ -2066,8 +2083,8 @@ class feed {
 						</div>
 						<div class="delete_preloader" id="post_comment_'.$row['id'].'"></div>
 					</div>
-				</div>	
-			</div>';
+			
+		  </div>';
 			$start = $row['id'];
 			$i++;
 		}
@@ -2376,7 +2393,7 @@ class feed {
 
 		// Run the query
 		$result = $this->db->query($query);
- 
+
 		return $result->fetch_assoc();
 	}
 
@@ -3007,18 +3024,55 @@ class feed {
 
 	function fetchProfileWidget($username, $name, $image) {
 		global $LNG;
-		$widget =  '<div class="sidebar-container widget-welcome">
-						<div class="sidebar-content">
-							<div class="sidebar-header">'.$LNG['welcome'].'</div>
-							<div class="sidebar-inner">
-								<div class="sidebar-avatar"><a href="'.permalink($this->url.'/index.php?a=profile&u='.$username).'" rel="loadpage"><img src="'.permalink($this->url.'/image.php?t=a&w=50&h=50&src='.$image).'"></a></div>
-								<div class="sidebar-avatar-desc">
-									<a href="'.permalink($this->url.'/index.php?a=profile&u='.$username).'" rel="loadpage">'.((!empty($name) ? $name : $username)).'</a>
-									<div class="sidebar-avatar-edit"><a href="'.permalink($this->url.'/index.php?a=settings').'" rel="loadpage">'.$LNG['admin_ttl_edit_profile'].'</a></div>
-								</div>
-							</div>
-						</div>
-					</div>';
+		$getUser = $this->db->query(sprintf("SELECT `idu`, `username`, `first_name`, `last_name`, `email`, `bio`, `email_mention` FROM `users` WHERE `username` = '%s'", $this->db->real_escape_string($username)));
+		$currentUser = $getUser->fetch_assoc();
+
+		$confirmedFriends = $this->db->query(sprintf("SELECT `id` FROM `notifications` WHERE `to` = '%s' AND `from` <> '%s' AND `type` = '5' AND `read` = '0'", $this->db->real_escape_string($this->id), $this->db->real_escape_string($this->id)));
+		// If any, return 1 (show notification)
+		$fc = $confirmedFriends->num_rows;
+
+		$widget =  '
+		
+		<div
+              class="box mb-3 shadow-sm border rounded bg-white profile-box text-center"
+            >
+
+              <div class="py-4 px-3 border-bottom">
+                <img
+				  src="'.permalink($this->url.'/image.php?t=a&w=50&h=50&src='.$image).'"
+                  class="img-fluid mt-2 rounded-circle"
+                  alt="'.$username.'"
+				  style="width:120px; height:120px"
+                />
+                <h5 class="font-weight-bold text-dark mb-1 mt-4">
+					'.((!empty($name) ? $name : $username)).'
+                </h5>
+                <p class="mb-0 text-muted">'.$currentUser['bio'].'</p>
+              </div>
+
+              <div class="d-flex">
+                <div class="col-6 border-right p-3">
+                  <h6 class="font-weight-bold text-dark mb-1">'.$fc.'</h6>
+                  <p class="mb-0 text-black-50 small">'.$LNG['groups'].'</p>
+                </div>
+                <div class="col-6 p-3">
+                  <h6 class="font-weight-bold text-dark mb-1"><i class="bi bi-pencil-square"></i></h6>
+                  <p class="mb-0 text-black-50 small">
+				  	<a href="'.permalink($this->url.'/index.php?a=settings').'" rel="loadpage">'.$LNG['admin_ttl_edit_profile'].'</a>
+				  </p>
+                </div>
+              </div>
+
+              <div class="overflow-hidden border-top">
+                <a
+                  class="font-weight-bold p-3 d-block"
+                  href="'.permalink($this->url.'/index.php?a=profile&u='.$username).'"
+                >
+                  View my profile
+                </a>
+              </div>
+
+            </div>';
 		return $widget;
 	}
 
@@ -5444,8 +5498,11 @@ class feed {
 			$row[] = $rows;
 		}
 
-		$output = '<div class="sidebar-container widget-groups"><div class="sidebar-content">
-			<div class="sidebar-header"><a href="#'.permalink($this->url.'/index.php?a=group').'" rel="loadpage">'.$LNG['groups'].'</a></span></div>';
+		$output = '<div class="box shadow-sm border rounded bg-white mb-3">
+			<div class="box-title border-bottom p-3">
+				<h6 class="m-0"><a href="'.permalink($this->url.'/index.php?a=group').'" rel="loadpage">'.$LNG['groups'].'</a></h6>
+			</div>
+			';
 
 		if(!$visible) {
 			// Create Group butn and link... commented out for now
@@ -5503,7 +5560,7 @@ class feed {
 				$i++;
 			}
 		}
-		$output .= '</div></div>';
+		$output .= '</div>';
 		return $output;
 	}
 
@@ -5961,7 +6018,7 @@ class feed {
             $interestsFilter = sprintf("AND `gender` = '%s'", $this->db->real_escape_string($interests));
         }
 
-		$query = $this->db->query(sprintf("SELECT `idu`, `username`, `first_name`, `last_name`, `location`, `image`  FROM `users` WHERE `idu` NOT IN (%s) %s AND `suspended` = 0 ORDER BY `idu` DESC LIMIT 6", $friendslist, $interestsFilter));
+		$query = $this->db->query(sprintf("SELECT `idu`, `username`, `first_name`, `last_name`, `location`, `email`, `image`  FROM `users` WHERE `idu` NOT IN (%s) %s AND `suspended` = 0 ORDER BY `idu` DESC LIMIT 6", $friendslist, $interestsFilter));
 
 		// Store the array results
 		while($row = $query->fetch_assoc()) {
@@ -5972,15 +6029,41 @@ class feed {
 		if(!empty($rows)) {
 			$i = 0;
 
-			$output = '<div class="sidebar-container widget-suggestions"><div class="sidebar-content"><div class="sidebar-header">'.$LNG['sidebar_suggestions'].'</div><div class="sidebar-padding">';
+			$output = '
+				<div class="box shadow-sm border rounded bg-white mb-3">
+						<div class="box-title border-bottom p-3">
+							<h6 class="m-0">'.$LNG['sidebar_suggestions'].'</h6>
+						</div>
+					<div class="box-body p-3">
+			';
 			foreach($rows as $row) {
 				if($i == 6) break; // Display only the last 6 suggestions
 
 				// Add the elemnts to the array
-				$output .= '<a href="'.permalink($this->url.'/index.php?a=profile&u='.$row['username']).'" rel="loadpage"><div class="sidebar-subscriptions"><div class="sidebar-title-container"><div class="sidebar-title-name">'.realName($row['username'], $row['first_name'], $row['last_name']).'</div></div><img src="'.permalink($this->url.'/image.php?t=a&w=112&h=112&src='.$row['image']).'"></div></a>';
+				$output .= '
+					<div class="d-flex align-items-center osahan-post-header mb-3 people-list">
+						<div class="dropdown-list-image mr-3">
+							<img
+								class="rounded-circle"
+								src="'.permalink($this->url.'/image.php?t=a&w=112&h=112&src='.$row['image']).'"
+								alt=""
+							/>
+							<div class="status-indicator bg-success"></div>
+						</div>
+						<div class="font-weight-bold mr-2">
+							<div class="text-truncate">'.realName($row['username'], $row['first_name'], $row['last_name']).'</div>
+							<div class="small text-gray-500">'.$row['email'].'</div>
+						</div>
+					  <span class="ml-auto"
+						><a href="'.permalink($this->url.'/index.php?a=profile&u='.$row['username']).'" rel="loadpage" class="btn btn-light btn-sm">
+						  <i class="bi bi-person-plus"></i>
+						</a>
+					  </span>
+					</div>
+				';
 				$i++;
 			}
-			$output .= '</div></div></div>';
+			$output .= '</div></div>';
 			return $output;
 		} else {
 			return false;

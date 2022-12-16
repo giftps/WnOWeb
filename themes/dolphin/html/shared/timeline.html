@@ -3,19 +3,38 @@
 	{$plugins}
 	{$cover}
 
-	<div>
-		<div class="grid-container">
-			<div class="grid-content" id="messages">
-				{$top}
-				<div id="load-content"></div>
-				{$rows}
-				<div id="profile-card"></div>
-			</div>
-			<div class="grid-sidebar">
-				{$sidebar}
+	<div class="py-4" style="margin-top: 60px;">
+		<div class="container">
+			<div class="row">
+				<main class="col col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-12">
+					{$top}
+					<div id="load-content"></div>
+					{$rows}
+					<div id="profile-card"></div>
+				</main>
+				<aside class="col col-xl-3 order-xl-1 col-lg-6 order-lg-2 col-md-6 col-sm-6 col-12">
+					
+					<div class="box shadow-sm mb-3 rounded bg-white ads-box text-center overflow-hidden">
+						<img src="{$url}/{$theme_url}/images/ads1.png"
+							class="img-fluid" alt="Responsive image" />
+						<div class="p-3 border-bottom">
+							<h6 class="font-weight-bold text-gold">Widen Out Premium</h6>
+							<p class="mb-0 text-muted">Grow &amp; nurture your network</p>
+						</div>
+						<div class="p-3">
+							<button type="button" class="btn btn-outline-gold pl-4 pr-4">
+								ACTIVATE
+							</button>
+						</div>
+					</div>
+				</aside>
+				<aside class="col col-xl-3 order-xl-3 col-lg-6 order-lg-3 col-md-6 col-sm-6 col-12">
+					{$sidebar}
+				</aside>
 			</div>
 		</div>
 	</div>
+
 </div>
 {$ad2}
 <div id="likes" class="modal-large">
@@ -44,7 +63,8 @@
 		</div>
 		<div class="message-divider"></div>
 		<div class="modal-menu">
-			<div class="modal-cancel button-normal" id="delete-cancel"><a onclick="sharesModal(0, 1)">{$lng->close}</a></div>
+			<div class="modal-cancel button-normal" id="delete-cancel"><a onclick="sharesModal(0, 1)">{$lng->close}</a>
+			</div>
 		</div>
 	</div>
 </div>

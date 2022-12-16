@@ -83,7 +83,7 @@ function PageMain() {
 		}
 	}
 	
-	if(isset($_POST['login'])) {
+	if(isset($_POST['login'])) { 
 		// Log-in usage
 		$log = new User();
 		$log->db = $db;

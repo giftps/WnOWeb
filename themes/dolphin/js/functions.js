@@ -2,10 +2,10 @@
 
 function autosize() {
 	// auto adjust the height of
-	jQuery('body').on('keyup', 'textarea', function() {
-		jQuery(this).height(0);
-		jQuery(this).height((this.scrollHeight-10));
-	});
+	// jQuery('body').on('keyup', 'textarea', function() {
+	// 	jQuery(this).height(0);
+	// 	jQuery(this).height((this.scrollHeight-10));
+	// });
 }
 function showButton(id) {
 	jQuery('#comment_box_'+id).append(jQuery('#comments-controls'));
@@ -1006,7 +1006,7 @@ function showNotification(x, y) {
 			}
 		});
 	}
-} 
+}
 function checkNewMessages() {
 	var last = jQuery('.last-message').data("last");
 	var filter = jQuery('.last-message').data("filter");

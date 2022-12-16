@@ -17,7 +17,7 @@ function poll_event($values) {
 			</div>
 		</div>';
 		
-		$button = '<input type="radio" name="type" value="" id="poll" class="input_hidden"><label for="poll" id="polls-button" class="plugin-button" title="Create a poll"><img src="'.$values['site_url'].'/plugins/poll/icons/polls.svg"></label>';
+		$button = '<input type="radio" name="type" value="" id="poll" class="input_hidden"><label for="poll" id="polls-button" class="plugin-button" title="Create a poll"><button class="btn btn-light btn-sm"><i class="bi bi-pie-chart-fill" style="font-size: 20px;"></i></button></label>';
 	}
 	return $form.$button;
 }

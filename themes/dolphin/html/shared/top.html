@@ -1,42 +1,81 @@
-<div class="message-container">
-	<form id="postForm" name="form" action="{$url}/requests/post_message.php" method="POST" enctype="multipart/form-data">
-	{$token_input}
-		<div class="message-form-content">
-			<div class="message-form-header">
-				<div class="message-form-user"><img src="{$avatar}"></div>
-				{$lng->form_title}
-				<div class="message-form-private"></div>
-				<div class="message-loader" id="post-loader9999999999" style="visibility: hidden"><div class="preloader"></div></div>
+<div class="box shadow-sm border rounded bg-white mb-3 osahan-share-post">
+	<form id="postForm" name="form" action="{$url}/requests/post_message.php" method="POST"
+		enctype="multipart/form-data">
+		{$token_input}
+
+		<ul class="nav nav-justified border-bottom osahan-line-tab" id="myTab" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" id="home-tab" data-toggle="tab" aria-selected="true"><i
+						class="bi bi-pencil-square"></i>
+					{$lng->form_title}</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="profile-tab"></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="contact-tab"> </a>
+			</li>
+		</ul>
+
+		<div class="tab-content" id="myTabContent">
+			
+			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+				<div class="p-3 d-flex align-items-center w-100" href="#">
+					<div class="dropdown-list-image mr-3">
+						<img class="rounded-circle" src="{$avatar}" alt="" />
+						<div class="status-indicator bg-success"></div>
+
+						<div class="message-form-private"></div>
+						<div class="message-loader" id="post-loader9999999999" style="visibility: hidden">
+							<div class="preloader"></div>
+						</div>
+					</div>
+					<div class="w-100 p-3">
+						<textarea name="message" placeholder="{$lng->message_form}"
+							class="form-control border-0 p-0 shadow-none" rows="1"></textarea>
+					</div>
+				</div>
 			</div>
-			
-			<div class="message-form-inner">
-				<textarea id="post9999999999" class="message-form" placeholder="{$lng->message_form}" name="message"></textarea>
+
+		</div>
+
+
+		<div id="plugins-forms" style="display: none;"></div>
+
+		<input type="hidden" name="privacy" id="message-privacy" value="{$private_message}">
+		<input type="hidden" name="group" id="message-group" value="{$group}">
+		<input type="hidden" name="page" id="message-page" value="{$page}">
+
+		<div class="selected-files" id="queued-files"></div>
+		<div class="message-form-input"><input type="hidden" name="value" id="form-value"></div>
+
+		<div class="border-top p-3 d-flex align-items-center">
+			<div class="mr-auto">
+				<div id="values">
+					<label id="open_images" title="{$lng->label_image}"><button class="btn btn-light btn-sm"><i class="bi bi-camera-fill" style="font-size: 20px;"></i></button></label>
+					<!-- <input type="radio" name="type" value="video" id="video" class="input_hidden"><label for="video" title="{$lng->label_video}"><img src="{$url}/{$theme_url}/images/icons/events/video.svg"></label> -->
+					<!-- <input type="radio" name="type" value="map" id="map" class="input_hidden"><label for="map" title="{$lng->label_map}"><img src="{$url}/{$theme_url}/images/icons/events/map.svg"></label> -->
+					<!-- <input type="radio" name="type" value="music" id="music" class="input_hidden"><label for="music" title="{$lng->label_music}"><img src="{$url}/{$theme_url}/images/icons/events/music.svg"></label> -->
+					<!-- <input type="radio" name="type" value="game" id="game" class="input_hidden"><label for="game" title="{$lng->label_game}"><img src="{$url}/{$theme_url}/images/icons/events/game.svg"></label> -->
+					<!-- <input type="radio" name="type" value="food" id="food" class="input_hidden"><label for="food" title="{$lng->label_food}"><img src="{$url}/{$theme_url}/images/icons/events/food.svg"></label> -->
+					{$plugins}
+					<input name="images[]" id="images" size="27" type="file" class="inputImage"
+						title="{$lng->label_image}" multiple="multiple" accept="image/*">
+				</div>
 			</div>
-			<div id="plugins-forms" style="display: none;"></div>
-			
-			<input type="hidden" name="privacy" id="message-privacy" value="{$private_message}">
-			<input type="hidden" name="group" id="message-group" value="{$group}">
-			<input type="hidden" name="page" id="message-page" value="{$page}">
-			
-			<div class="selected-files" id="queued-files"></div>
-			<div class="message-form-input"><input type="text" name="value" id="form-value"></div>
-			<div id="values">
-				<label id="open_images" title="{$lng->label_image}"><img src="{$url}/{$theme_url}/images/icons/events/camera.svg"></label>
-				<!-- <input type="radio" name="type" value="video" id="video" class="input_hidden"><label for="video" title="{$lng->label_video}"><img src="{$url}/{$theme_url}/images/icons/events/video.svg"></label> -->
-				<!-- <input type="radio" name="type" value="map" id="map" class="input_hidden"><label for="map" title="{$lng->label_map}"><img src="{$url}/{$theme_url}/images/icons/events/map.svg"></label> -->
-				<!-- <input type="radio" name="type" value="music" id="music" class="input_hidden"><label for="music" title="{$lng->label_music}"><img src="{$url}/{$theme_url}/images/icons/events/music.svg"></label> -->
-				<!-- <input type="radio" name="type" value="game" id="game" class="input_hidden"><label for="game" title="{$lng->label_game}"><img src="{$url}/{$theme_url}/images/icons/events/game.svg"></label> -->
-				<!-- <input type="radio" name="type" value="food" id="food" class="input_hidden"><label for="food" title="{$lng->label_food}"><img src="{$url}/{$theme_url}/images/icons/events/food.svg"></label> -->
-				{$plugins}
-				<input name="images[]" id="images" size="27" type="file" class="inputImage" title="{$lng->label_image}" multiple="multiple" accept="image/*">
-			</div>
-			
-			<div type="button" name="action" class="message-btn button-active1" style="cursor: pointer;"><a onclick="startUpload()"> <img src="{$url}/{$theme_url}/images/icons/send.png"> </a></div>
-			<div class="message-btn button-normal" onclick="messageMenu(9999999999, 1)" title="{$lng->change_privacy}" id="privacy-button"{$style}><a><div id="privacy-btn" class="privacy-icons {$privacy_class}-icon"></div></a></div>
-			<div id="message-menu9999999999" class="message-menu-container message-menu-privacy">
-				<div class="message-menu-row" onclick="postPrivacy(1)">{$lng->public}</div>
-				<div class="message-menu-row" onclick="postPrivacy(2)">{$lng->friends}</div>
-				<div class="message-menu-row" onclick="postPrivacy(0)">{$lng->private}</div>
+			<div class="flex-shrink-1">
+				<button onclick="messageMenu(9999999999, 1)" title="{$lng->change_privacy}" type="button"
+					class="btn btn-light btn-sm">
+					<i class="bi bi-globe" style="font-size: 18px;"></i>
+				</button>
+				<div id="message-menu9999999999" class="message-menu-container message-menu-privacy">
+					<div class="message-menu-row" onclick="postPrivacy(1)">{$lng->public}</div>
+					<div class="message-menu-row" onclick="postPrivacy(2)">{$lng->friends}</div>
+					<div class="message-menu-row" onclick="postPrivacy(0)">{$lng->private}</div>
+				</div>
+				<button onclick="startUpload()" type="button" name="action" class="btn btn-primary btn-sm">
+					Post Status
+				</button>
 			</div>
 		</div>
 		<iframe id="frameForm" name="frameForm" src="" style="display: none"></iframe>
