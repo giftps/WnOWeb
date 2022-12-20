@@ -44,6 +44,10 @@ class ComposerStaticInite4f7bd473c496045b6c943b906d275e4
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
+        'E' => 
+        array (
+            'ExponentPhpSDK\\' => 15,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -94,6 +98,10 @@ class ComposerStaticInite4f7bd473c496045b6c943b906d275e4
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'ExponentPhpSDK\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/alymosul/exponent-server-sdk-php/lib',
         ),
     );
 

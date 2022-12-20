@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../../includes/vendor/autoload.php';
 
 class Users
 {
@@ -24,6 +25,23 @@ class Users
 				$this->db = $conn;
 			}
 		}
+
+		$channelName = 'news';
+		$recipient = 'ExponentPushToken[c6TPq4H4RKbo0HUxmGY9jh]';
+
+		// You can quickly bootup an expo instance
+		$expo = \ExponentPhpSDK\Expo::normalSetup();
+
+		// Subscribe the recipient to the server
+		$expo->subscribe($channelName, $recipient);
+
+		// Build the notification data
+		$notification = ['body' => 'Hello World!'];
+
+		// Notify an interest with a notification
+		$expo->notify([$channelName], $notification);
+
+		$notification = ['body' => 'Hello World!', 'data'=> json_encode(array('someData' => 'goes here'))];
 	}
 
 
@@ -177,7 +195,21 @@ class Users
 		}
 		// // The array to store the subscribed users
 		$rows = array();
-		$query = $this->db->query(sprintf("SELECT `idu`, `username`, `first_name`, `last_name`, `location`, `email`, `image`, `cover` FROM `users` WHERE `idu` NOT IN (%s) AND `suspended` = 0 ORDER BY `idu` DESC LIMIT 100", $friendslist))or die(mysqli_error($this->db));
+		$query = $this->db->query(sprintf("SELECT `idu`, `username`, `first_name`, `last_name`, `location`, `email`, `image`, `cover` FROM `users` WHERE `idu` NOT IN (%s) AND `suspended` = 0 ORDER BY `idu` DESC LIMIT 100", $friendslist)) or die(mysqli_error($this->db));
+
+		// Store the array results
+		while ($row = $query->fetch_assoc()) {
+			$rows[] = $row;
+		}
+
+		echo json_encode($rows);
+	}
+
+	function getPendingFriends($user_id = null)
+	{
+		// // The array to store the subscribed users
+		$rows = array();
+		$query = $this->db->query(sprintf("SELECT `users`.`idu`, `users`.`username`, `users`.`first_name`, `users`.`last_name`, `users`.`location`, `users`.`email`, `users`.`image`, `users`.`cover`, `user1`, `user2` FROM `friendships` INNER JOIN `users` on `users`.`idu` = `user2` WHERE `user1` = '%s' AND `status` = 0 ORDER BY `idu` DESC LIMIT 100", $user_id)) or die(mysqli_error($this->db));
 
 		// Store the array results
 		while ($row = $query->fetch_assoc()) {
@@ -1513,6 +1545,15 @@ class Users
 	}
 
 
+	function removePendingFriend($user_id = null, $friend_id = null)
+	{
+		$this->db->query(sprintf("DELETE FROM `friendships` WHERE `user1` = '%s' AND `user2` = '%s'", $this->db->real_escape_string($user_id), $this->db->real_escape_string($friend_id)));
+
+		header('Content-Type: application/json');
+		// echo json_encode($query->fetch_assoc());
+		echo json_encode('done');
+	}
+
 	function getSingleUser($id)
 	{
 		$userQuery = "SELECT * FROM users WHERE idu = '$id' ";
@@ -1522,7 +1563,6 @@ class Users
 		// echo json_encode($query->fetch_assoc());
 		return $query->fetch_assoc();
 	}
-
 
 	// function checkFriendship($type = null, $list = null, $z = null)
 	// {
