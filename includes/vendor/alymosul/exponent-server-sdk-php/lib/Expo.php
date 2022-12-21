@@ -201,7 +201,7 @@ class Expo
     /**
      * Executes cURL and captures the response
      *
-     * @param $ch
+     * @param $ch 
      *
      * @throws UnexpectedResponseException
      *

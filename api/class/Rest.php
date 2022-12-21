@@ -25,23 +25,6 @@ class Users
 				$this->db = $conn;
 			}
 		}
-
-		$channelName = 'news';
-		$recipient = 'ExponentPushToken[c6TPq4H4RKbo0HUxmGY9jh]';
-
-		// You can quickly bootup an expo instance
-		$expo = \ExponentPhpSDK\Expo::normalSetup();
-
-		// Subscribe the recipient to the server
-		$expo->subscribe($channelName, $recipient);
-
-		// Build the notification data
-		$notification = ['body' => 'Hello World!'];
-
-		// Notify an interest with a notification
-		$expo->notify([$channelName], $notification);
-
-		$notification = ['body' => 'Hello World!', 'data'=> json_encode(array('someData' => 'goes here'))];
 	}
 
 
@@ -52,6 +35,7 @@ class Users
 		// $password = $userData['password'];
 		$username = $userData->username;
 		$password = $userData->password;
+		$expo_token = $userData->token;
 
 		$password_hash = null;
 
@@ -65,17 +49,35 @@ class Users
 		while ($userRecord = mysqli_fetch_assoc($resultData)) {
 			$userData = $userRecord;
 			$password_hash = $userRecord['password'];
-			$_SESSION['wn_mobile_idu'] = $userRecord['idu'];
 		}
 
 		if (password_verify($password, $password_hash)) {
 			// return
+			$this->db->query(sprintf("UPDATE `users` SET `expo_token` = '%s' WHERE `idu` = '%s'", $expo_token, $userRecord['idu']));
+
 			header('Content-Type: application/json');
 			echo json_encode($userData);
 		} else {
 			header('Content-Type: application/json');
 			echo json_encode("Incorrect Data");
 		}
+	}
+
+	function sendNotification($title, $message, $recipient, $channel)
+	{
+		$channelName = $channel;
+		$recipient = $recipient;
+		// $recipient = 'ExponentPushToken[dw9zadFTzI95lQ92lf82_x]';
+
+		// You can quickly bootup an expo instance
+		$expo = \ExponentPhpSDK\Expo::normalSetup();
+
+		// Subscribe the recipient to the server
+		$expo->subscribe($channelName, $recipient);
+
+		$notification = ['title' => $title, 'body' => $message, "icon" => 'https://widenout.tk//themes/dolphin/images/WidenOut_outline.png', 'data' => json_encode(array("icon" => 'https://widenout.tk//themes/dolphin/images/WidenOut_outline.png'))];
+		// Notify an interest with a notification
+		$expo->notify([$channelName], $notification);
 	}
 
 	function loginAdmin($userData)
