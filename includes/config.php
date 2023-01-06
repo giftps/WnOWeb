@@ -33,6 +33,7 @@ $CONF['plugin_path'] = 'plugins';
 
 $action = array('admin'			=> 'admin',
 				'feed'			=> 'feed',
+				'tcs'			=> 'tcs',
 				'settings'		=> 'settings',
 				'messages'		=> 'messages',
 				'post'			=> 'post',
