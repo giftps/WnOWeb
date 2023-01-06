@@ -53,7 +53,7 @@ class Users
 
 		if (password_verify($password, $password_hash)) {
 			// return
-			$this->db->query(sprintf("UPDATE `users` SET `expo_token` = '%s' WHERE `idu` = '%s'", $expo_token, $userRecord['idu']));
+			$this->db->query(sprintf("UPDATE `users` SET `expo_token` = '%s' WHERE `username` = '%s'", $expo_token, $username));
 
 			header('Content-Type: application/json');
 			echo json_encode($userData);
@@ -111,7 +111,7 @@ class Users
 
 	function id()
 	{
-		return $_SESSION['wn_mobile_idu'];
+		// return $_SESSION['wn_mobile_idu'];
 	}
 
 	function logedInUser()
@@ -544,10 +544,10 @@ class Users
 			} else {
 				if ($this->is_admin) {
 					$private = 0;
-				} elseif ($this->id() == $this->profile_id) {
+				} elseif ($id == $this->profile_id) {
 					$private = 0;
 				} else {
-					$friendship = $this->verifyFriendship($this->id(), $this->profile_id);
+					$friendship = $this->verifyFriendship($id, $this->profile_id);
 
 					// If the profile is set to friends only and there is no friendship
 					if ($profile['private'] == 2 && $friendship['status'] !== '1') {
@@ -593,13 +593,13 @@ class Users
 			// Decide if the query will include only public messages or not
 			// if the user that views the profile is not the owner
 			$public = '';
-			if ($this->id() !== $this->profile_id) {
+			if ($id !== $this->profile_id) {
 				// Check if is admin or not
 				if ($this->is_admin) {
 					$public = '';
 				} else {
 					// Check if there is any friendship relation
-					$friendship = $this->verifyFriendship($this->id(), $this->profile_id);
+					$friendship = $this->verifyFriendship($id, $this->profile_id);
 
 					if ($friendship['status'] == '1') {
 						$public = "AND `messages`.`public` <> 0";

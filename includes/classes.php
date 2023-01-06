@@ -3,6 +3,7 @@
 // Copyright © 2022. All rights reserved.							\\
 //----------------------------------------------------------------------\\
 //======================================================================\\
+// require_once '../vendor/autoload.php';
 
 function getSettings() {
 	$querySettings = "SELECT * from `settings`";
@@ -4068,6 +4069,39 @@ class feed {
 		// Select the comment's likes (if the comments exists)
 		$query = $this->db->query(sprintf("SELECT * FROM `users`, `messages` %s %s `%s`.`id` = '%s' AND `%s`.`uid` = `users`.`idu`", $special, $extra, $table, $this->db->real_escape_string($id), $table));
 		$post = $query->fetch_assoc();
+
+		if($type == 1) {
+			// $channelName = 'message_like';
+			// $recipient= $post['expo_token'];
+			
+			// // You can quickly bootup an expo instance
+			// $expo = \ExponentPhpSDK\Expo::normalSetup();
+			
+			// // Subscribe the recipient to the server
+			// $expo->subscribe($channelName, $recipient);
+			
+			// // Build the notification data
+			// $notification = ['body' => 'Hello World!', 'data'=> json_encode(array('someData' => 'goes here'))];
+			
+			// // Notify an interest with a notification
+			// $expo->notify([$channelName], $notification);
+		} else {
+			// $channelName = 'message_like_';
+			// $recipient= $post['expo_token'];
+			
+			// // You can quickly bootup an expo instance
+			// $expo = \ExponentPhpSDK\Expo::normalSetup();
+			
+			// // Subscribe the recipient to the server
+			// $expo->subscribe($channelName, $recipient);
+			
+			// // Build the notification data
+			// $notification = ['body' => ` Reacted to your post`, 'title'=>` Reacted to your post`, 'data'=> json_encode(array('someData' => 'goes here'))];
+			
+			// // Notify an interest with a notification
+			// $expo->notify([$channelName], $notification);
+			
+		}
 
 		// If the comment does not exists
 		if(empty($post['id'])) {
